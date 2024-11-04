@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Assignment a</h2>
+
+<button onclick="addRowToBottom()">Add row to bottom</button>
+<button onclick="addRowToTop()">Add row to top</button>
+
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>SL.No.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>City</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Doe</td>
+            <td>New York</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Jane</td>
+            <td>Smith</td>
+            <td>Los Angeles</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Emily</td>
+            <td>Johnson</td>
+            <td>Toronto</td>
+            <td>Canada</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Michael</td>
+            <td>Williams</td>
+            <td>London</td>
+            <td>UK</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Mary</td>
+            <td>Brown</td>
+            <td>Sydney</td>
+            <td>Australia</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function addRowToBottom() {
+        const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        const cellCount = table.rows.length + 1;
+
+        newRow.innerHTML = `
+            <td>${cellCount}</td>
+            <td>First${cellCount}</td>
+            <td>Last${cellCount}</td>
+            <td>City${cellCount}</td>
+            <td>Country${cellCount}</td>
+        `;
+    }
+
+    function addRowToTop() {
+        const table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow(0);
+        const cellCount = table.rows.length + 1;
+
+        newRow.innerHTML = `
+            <td>1</td>
+            <td>First1</td>
+            <td>Last1</td>
+            <td>City1</td>
+            <td>Country1</td>
+        `;
+
+        // Adjust the S.No. for all rows
+        for (let i = 1; i < table.rows.length; i++) {
+            table.rows[i].cells[0].innerText = i + 1;
+        }
+    }
+</script>
+
+</body>
+</html>
