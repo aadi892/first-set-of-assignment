@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Letter Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 300px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Find Remaining Sentence After a Letter</h1>
+    <form id="inputForm">
+        <label for="sentence">Enter a Sentence:</label><br>
+        <input type="text" id="sentence" required><br>
+        <label for="letter">Enter a Letter (A-Z):</label><br>
+        <input type="text" id="letter" maxlength="1" required pattern="[A-Za-z]"><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const sentence = document.getElementById('sentence').value;
+            const letter = document.getElementById('letter').value.toLowerCase();
+
+            const index = sentence.toLowerCase().indexOf(letter);
+
+            const resultDiv = document.getElementById('result');
+            if (index === -1) {
+                resultDiv.textContent = "The letter does not exist in the sentence.";
+            } else {
+                const result = sentence.slice(index + 1);
+                resultDiv.textContent = `Result: ${result}`;
+            }
+        });
+    </script>
+
+</body>
+</html>
